@@ -1,0 +1,71 @@
+.counter-section {
+  background: #f8f9fa;
+  padding: 80px 0;
+}
+
+.counter-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.counter-card {
+  background: var(--light-bg);
+  border-radius: 10px;
+  padding: 40px 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.counter-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.counter-number {
+  display: block;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--primary-color);
+  line-height: 1;
+  margin-bottom: 15px;
+}
+
+.counter-label {
+  display: block;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: var(--text-light);
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+  .counter-row {
+    gap: 20px;
+  }
+
+  .counter-card {
+    padding: 30px 15px;
+    min-height: 150px;
+  }
+
+  .counter-number {
+    font-size: 36px;
+  }
+
+  .counter-label {
+    font-size: 12px;
+  }
+}
+
+
+

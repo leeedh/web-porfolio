@@ -1,0 +1,298 @@
+.resume-section {
+  background: var(--light-bg);
+  padding: 100px 0;
+  overflow: visible !important; /* sticky 작동을 위해 필수 */
+}
+
+.resume-section .container {
+  overflow: visible !important; /* sticky 작동을 위해 필수 */
+}
+
+.resume-wrapper {
+  overflow: visible !important;
+  width: 100%;
+}
+
+/* 좌측 컬럼이 sticky가 제대로 작동하도록 설정 */
+.resume-section .row {
+  align-items: flex-start !important; /* 양쪽 컬럼이 상단 정렬 */
+  overflow: visible !important;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.resume-section .col-md-3 {
+  position: relative; /* absolute 위치 지정의 기준점 */
+  min-height: 500px; /* 최소 높이 보장 */
+}
+
+.resume-nav {
+  /* JavaScript로 동적으로 position 변경 */
+  position: relative;
+  top: 0;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  z-index: 100;
+  background: var(--light-bg);
+  padding: 20px;
+  margin-bottom: 20px;
+  /* transform 전환만 부드럽게 */
+  transition: transform 0.1s linear;
+  will-change: transform;
+}
+
+/* fixed 상태일 때 */
+.resume-nav.is-fixed {
+  position: fixed !important;
+  top: 80px !important;
+}
+
+.resume-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.resume-nav li {
+  margin-bottom: 10px;
+}
+
+.resume-nav a {
+  display: block;
+  padding: 12px 20px;
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: 500;
+  border-left: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.resume-nav a:hover,
+.resume-nav a.active {
+  color: var(--primary-color);
+  border-left-color: var(--primary-color);
+  background: rgba(44, 152, 240, 0.05);
+}
+
+.tab-content {
+  padding-left: 30px;
+  padding-top: 20px;
+  padding-bottom: 60px;
+  scroll-margin-top: 100px; /* 스크롤 시 네비게이션 바 높이 고려 */
+}
+
+.tab-content:first-of-type {
+  padding-top: 0;
+}
+
+.tab-content .heading {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: var(--text-dark);
+  padding-top: 20px;
+  border-top: 2px solid #f0f0f0;
+}
+
+.tab-content:first-of-type .heading {
+  border-top: none;
+  padding-top: 0;
+}
+
+.resume-item {
+  display: flex;
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.resume-item:last-child {
+  border-bottom: none;
+}
+
+.resume-icon {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-right: 20px;
+}
+
+.resume-text {
+  flex: 1;
+}
+
+.resume-text .date {
+  display: block;
+  color: var(--primary-color);
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.resume-text h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--text-dark);
+}
+
+.resume-text .position {
+  display: block;
+  color: var(--text-light);
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.resume-text p {
+  color: var(--text-light);
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.tech-stack,
+.main-tasks,
+.project-details {
+  margin-top: 20px;
+}
+
+.tech-stack strong,
+.main-tasks strong,
+.project-details strong {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.main-tasks ul {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.main-tasks li {
+  color: var(--text-light);
+  margin-bottom: 8px;
+}
+
+.project-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.project-links {
+  display: flex;
+  gap: 10px;
+}
+
+.project-links .btn {
+  padding: 8px 20px;
+  font-size: 12px;
+}
+
+/* Skills Grid */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.skill-item h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: var(--text-dark);
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 10px;
+  background: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  border-radius: 5px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+}
+
+.progress-bar span {
+  position: absolute;
+  right: -40px;
+  top: -25px;
+  color: var(--text-dark);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* 모바일 반응형 (768px 미만) */
+@media (max-width: 767px) {
+  .resume-nav {
+    position: static;
+    margin-bottom: 30px;
+  }
+
+  .resume-nav ul {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+  }
+
+  .resume-nav li {
+    margin-bottom: 0;
+  }
+
+  .resume-nav a {
+    white-space: nowrap;
+    border-left: none;
+    border-bottom: 3px solid transparent;
+  }
+
+  .resume-nav a:hover,
+  .resume-nav a.active {
+    border-left: none;
+    border-bottom-color: var(--primary-color);
+  }
+
+  .tab-content {
+    padding-left: 0;
+  }
+
+  .resume-item {
+    flex-direction: column;
+  }
+
+  .resume-icon {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .project-links {
+    flex-wrap: wrap;
+  }
+}
+
