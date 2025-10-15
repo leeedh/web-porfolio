@@ -51,19 +51,19 @@ const About = () => {
               <ul className="about-info">
                 <li>
                   <span className="label">Name:</span>
-                  <span className="value">구민정</span>
+                  <span className="value">이동훈</span>
                 </li>
                 <li>
                   <span className="label">Address:</span>
-                  <span className="value">성남시 분당구 정자동</span>
+                  <span className="value">서울시 관악구 조원동</span>
                 </li>
                 <li>
                   <span className="label">Email:</span>
-                  <span className="value">cookie00421@gmail.com</span>
+                  <span className="value">ldhl4468@gmail.com</span>
                 </li>
                 <li>
                   <span className="label">Phone:</span>
-                  <span className="value">+82-10-1234-5678</span>
+                  <span className="value">+82-10-9444-6686</span>
                 </li>
               </ul>
 
@@ -96,6 +96,3 @@ const About = () => {
 }
 
 export default About
-
-
-

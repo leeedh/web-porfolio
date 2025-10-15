@@ -31,7 +31,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <span className="hero-subheading">Hey! I am</span>
-            <h1 className="hero-name">구민정</h1>
+            <h1 className="hero-name">이동훈</h1>
             <h2 className="hero-title">
               I'm a{' '}
               <TypeAnimation
@@ -69,6 +69,7 @@ const Hero = () => {
 }
 
 export default Hero
+
 
 
 
