@@ -1,15 +1,16 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import './About.css'
+import { personalInfo } from '../lib/data'
 
 /**
- * About 컴포넌트
+ * About 컴포넌트 - 지도 기반 프론트엔드 개발자 소개
  * 
- * 개발자 소개 섹션:
- * - 프로필 이미지와 정보 표시
- * - 카운터 애니메이션 (완료한 프로젝트 수)
+ * 주요 기능:
+ * - 프로필 이미지와 개인 정보 표시
+ * - 지도 관련 전문성 강조
+ * - 프로젝트 완료 수 카운터 애니메이션
  * - 이력서 다운로드 링크
- * - Intersection Observer를 사용해 스크롤 시 애니메이션 트리거
+ * - Intersection Observer를 사용한 스크롤 애니메이션
  */
 const About = () => {
   const [ref, inView] = useInView({
@@ -22,73 +23,133 @@ const About = () => {
     visible: { opacity: 1, y: 0 }
   }
 
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  }
+
   return (
-    <section className="about-section section" id="about-section">
-      <div className="container">
+    <section className="py-20" style={{ backgroundColor: '#111827' }} id="about">
+      <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
-          className="row about-row"
+          className="grid lg:grid-cols-2 gap-12 items-center"
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          variants={fadeInUp}
-          transition={{ duration: 0.6 }}
+          variants={staggerContainer}
         >
-          <div className="col-md-6">
-            <div className="about-image">
-              <div className="about-overlay"></div>
-              <img src="/images/about.jpg" alt="About Me" />
+          {/* 프로필 이미지 */}
+          <motion.div
+            variants={fadeInUp}
+            className="relative"
+          >
+            <div className="relative overflow-hidden rounded-xl shadow-2xl">
+              <img 
+                src="/images/about.jpg" 
+                alt="Donghoon Lee" 
+                className="w-full h-auto object-cover"
+              />
+              {/* 지도 오버레이 효과 */}
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
             </div>
-          </div>
+            
+            {/* 지도 아이콘 장식 */}
+            <div className="absolute -top-4 -right-4 w-12 h-12 bg-primary rounded-full flex items-center justify-center shadow-lg">
+              <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+              </svg>
+            </div>
+          </motion.div>
           
-          <div className="col-md-6">
-            <div className="about-content">
-              <div className="heading-section">
-                <h1 className="big">About</h1>
-                <h2 className="mb-4">About Me</h2>
-                <p>커피와 노트북만 있다면, 언제 어디서나 즐겁게 일하는 6년차 개발자 정쿠입니다.</p>
+          {/* 컨텐츠 */}
+          <motion.div variants={fadeInUp} className="space-y-8">
+            {/* 제목 */}
+            <div>
+              <span className="text-primary font-semibold text-lg tracking-wide uppercase">About</span>
+              <h2 className="text-3xl sm:text-4xl font-bold text-primary mt-2 mb-4">About Me</h2>
+              <p className="text-base sm:text-lg text-muted leading-relaxed">
+                {personalInfo.description}
+              </p>
+            </div>
+            
+            {/* 개인 정보 */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="flex flex-col space-y-2">
+                <span className="text-sm font-semibold text-secondary uppercase tracking-wide">Name</span>
+                <span className="text-muted">{personalInfo.name}</span>
               </div>
-              
-              <ul className="about-info">
-                <li>
-                  <span className="label">Name:</span>
-                  <span className="value">이동훈</span>
-                </li>
-                <li>
-                  <span className="label">Address:</span>
-                  <span className="value">서울시 관악구 조원동</span>
-                </li>
-                <li>
-                  <span className="label">Email:</span>
-                  <span className="value">ldhl4468@gmail.com</span>
-                </li>
-                <li>
-                  <span className="label">Phone:</span>
-                  <span className="value">+82-10-9444-6686</span>
-                </li>
-              </ul>
-
-              <div className="about-counter">
-                <motion.div
-                  className="counter-number"
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                >
-                  <span className="number">24</span>
-                  <span className="text">Project complete</span>
-                </motion.div>
-                
-                <a
-                  href="https://drive.google.com/file/d/1uJg0Yun35HWc4YsEKfEX5L6Uyik5MPl_/view?usp=sharing"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-primary"
-                >
-                  이력서 다운받기
+              <div className="flex flex-col space-y-2">
+                <span className="text-sm font-semibold text-secondary uppercase tracking-wide">Location</span>
+                <span className="text-muted">{personalInfo.location}</span>
+              </div>
+              <div className="flex flex-col space-y-2">
+                <span className="text-sm font-semibold text-secondary uppercase tracking-wide">Email</span>
+                <a href={`mailto:${personalInfo.email}`} className="text-primary hover:text-primary/80 transition-colors duration-300">
+                  {personalInfo.email}
+                </a>
+              </div>
+              <div className="flex flex-col space-y-2">
+                <span className="text-sm font-semibold text-secondary uppercase tracking-wide">Phone</span>
+                <a href={`tel:${personalInfo.phone}`} className="text-primary hover:text-primary/80 transition-colors duration-300">
+                  {personalInfo.phone}
                 </a>
               </div>
             </div>
-          </div>
+
+            {/* 전문성 강조 */}
+            <div className="backdrop-blur-sm rounded-xl p-6 border" style={{ backgroundColor: 'rgba(31, 41, 55, 0.8)', borderColor: '#374151' }}>
+              <h3 className="text-xl font-semibold text-primary mb-4">지도 & 공간데이터 전문성</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                <div className="flex items-center space-x-3">
+                  <div className="w-3 h-3 bg-primary rounded-full flex-shrink-0"></div>
+                  <span className="text-muted">GIS 데이터 처리</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-3 h-3 bg-primary rounded-full flex-shrink-0"></div>
+                  <span className="text-muted">3D 지도 시각화</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-3 h-3 bg-primary rounded-full flex-shrink-0"></div>
+                  <span className="text-muted">실시간 위치 서비스</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-3 h-3 bg-primary rounded-full flex-shrink-0"></div>
+                  <span className="text-muted">공간 데이터 분석</span>
+                </div>
+              </div>
+            </div>
+
+            {/* 프로젝트 카운터 & CTA */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between space-y-4 sm:space-y-0">
+              <motion.div
+                className="text-center sm:text-left"
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                <div className="text-3xl font-bold text-primary mb-1">
+                  {personalInfo.projectsCompleted}+
+                </div>
+                <div className="text-sm text-muted">Projects Completed</div>
+              </motion.div>
+              
+              <motion.a
+                href={personalInfo.cvUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-primary text-white px-6 py-3 rounded-xl font-semibold shadow-soft hover:shadow-glow transition-all duration-300"
+              >
+                Download CV
+              </motion.a>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
