@@ -92,7 +92,7 @@ const Contact = () => {
           animate={inView ? "visible" : "hidden"}
           className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto"
         >
-          {contactMethods.map((method, index) => (
+          {contactMethods.map((method) => (
             <motion.div
               key={method.title}
               variants={fadeInUp}
